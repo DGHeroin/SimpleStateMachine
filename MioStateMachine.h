@@ -45,13 +45,13 @@ namespace mioware {
 		~StateMachine();
 		void deleteState(const std::string& stateName);
 		void addState(State* state);
-		bool transition(const std::string& from, const std::string& to);
+		bool transition( const std::string& to );
 		void tick();
 
 	protected:
 		void StateEnter(State* state);
 		void StateLeave(State* state);
-		bool performTransition(State* from, State* to);
+		bool performTransition( State* to );
 	protected:
 		std::unordered_map<std::string, State*> mStateMap;
 		std::string mCurrentStateName;
