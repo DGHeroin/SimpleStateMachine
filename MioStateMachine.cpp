@@ -44,15 +44,14 @@ void StateMachine::addState(State* state){
 	}
 }
  
-bool mioware::StateMachine::transition(const std::string & from, const std::string & to){
-	return performTransition(mStateMap[from], mStateMap[to]);
+bool mioware::StateMachine::transition(const std::string & to){
+	return performTransition( mStateMap[to]);
 }
 
 
-bool StateMachine::performTransition(State * from, State * to)
-{
+bool StateMachine::performTransition(State * from, State * to){
 	if (to == nullptr) return false; 
-	
+	mStateMap[from] = mStateMap[mCurrentStateName];
 	this->StateLeave(from);
 	this->StateEnter(to);
 
